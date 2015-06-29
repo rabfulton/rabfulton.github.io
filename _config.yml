@@ -1,33 +1,33 @@
 # SITE CONFIGURATION
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://127.0.0.1:4000" # the base hostname & protocol for your site
-
+#url: "http://127.0.0.1:4000" # the base hostname & protocol for your site
+url: "http://rabfulton.github.io"
 # THEME-SPECIFIC CONFIGURATION
 theme:
   # Meta
   title: Rab Fulton
   avatar:
   gravatar: # Email MD5 hash
-  description: "A website with blog posts and pages" # used by search engines
+  description: "Blog on Flute , bentwood ring and instrument making" # used by search engines
 
   # Header and footer text
   header_text: >
-     <p>I am a craftsman based in Scotland. I am interested in the creation of musical instruments.</p>
+     <p></p>
 
-  header_text_feature_image: img/ring001.jpg
+  header_text_feature_image: img/header.jpg
   footer_text: >
-   Powered by <a href="http://jekyllrb.com">Jekyll</a> with <a href="https://rohanchandra.github.io/project/type/">Type Theme</a>
+   Follow <a href="http://plus.google.com/u/0/108624488609783583375/posts/">Gooigle + </a> 	 See what I have for sale on <a href="http://www.etsy.com/uk/shop/Soundcraft?ref=hdr_shop_menu">Etsy</a>
 
   # Icons
   rss: false
-  email_address: # Full email address, e.g. "sam@example.com"
+  email_address: "rabfulton@gmail.com"
   behance:
   bitbucket:
   dribbble:
   facebook:
   flickr:
-  github: "rohanchandra/type-theme"
-  google_plus:
+  github:
+  google_plus: /u/0/108624488609783583375/posts/p/pub
   instagram:
   linkedin:  # Full URL
   pinterest:
@@ -36,7 +36,7 @@ theme:
   stack_exchange:  # Full URL
   steam:
   tumblr:
-  twitter: "twitter"
+  twitter:
   wordpress:
   youtube:
 

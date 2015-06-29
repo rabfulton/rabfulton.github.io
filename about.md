@@ -1,12 +1,12 @@
 ---
 layout: page
-title: About
+title: About Me
 permalink: /about/
 feature-img: "img/sample_feature_img_2.png"
 ---
 
-Type Theme is a free and open-source theme for [Jekyll](http://jekyllrb.com/), licensed under the MIT License.
+I am a self employed craftsman based in Glasgow, Scotland. I am experienced in woodwork, electronics and computer programming.
 
-Head over to the [theme's documentation](https://rohanchandra.github.io/project/type/) for much more information about Type Theme or to install this theme on your own Jekyll site.
+You can follow my work on [Google+](https://plus.google.com/u/0/108624488609783583375/posts) and see what I have for sale on [etsy](https://www.etsy.com/uk/shop/Soundcraft?ref=hdr_shop_menu).
 
-This file is an example of a page in Jekyll, that automatically shows up in the header navigation, you can delete or modify this file freely.
+If you would like a custom made flute, ring or to commission anything at all [contact me](mailto:rabfulton@gmail.com).
