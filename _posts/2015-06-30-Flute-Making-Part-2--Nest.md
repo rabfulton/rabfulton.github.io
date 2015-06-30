@@ -7,7 +7,7 @@ In the North American flute the area where where air is directed over the splitt
 
 This is the most important part of a flute and very subtle changes in its dimensions can produce wildly different results. The image below should give you an idea of the principle.
 
-The dimensions used for the channel (width, hieght and profile), the sizes of the openings, the angle and position of the cutting edge in the air stream are all critical and vary according to flute being made and its desired characteristics.
+The dimensions used for the channel (width, height and profile), the sizes of the openings, the angle and position of the cutting edge in the air stream are all critical and vary according to flute being made and its desired characteristics.
 
 ![nest stage 1](/img/tsh.jpg)
 
@@ -18,7 +18,7 @@ Parameter			  | Ballpark value
 Splitting edge angle  | 30 - 45 deg
 Channel height		  | 1/2 mm - 1 mm
 Channel length		  | 20 - 30mm
-TSH width			  | Upto 1/2 bore diameter
+TSH width			  | Up to 1/2 bore diameter
 TSH length			  | 6 * airstream channel height
 
 These are purely suggestions and you are encouraged to experiment produce many fire sticks on your own. Bamboo is ideal for this as it is cheap to buy and already has a bore, greatly reducing the costs in time and money while you get a feel for how each parameter affects the instruments sound. Be sure to start small and slowly increase values as you voice an instrument, its easier to cut bits off than to stick them back on. There is also some fairly involved mathematics that that can be used to calculate the values if you are that way inclined.
