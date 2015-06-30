@@ -2,15 +2,95 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rab Fulton</title>
-    <atom:link href="http://rabfulton.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <link>http://rabfulton.github.io/</link>
+    <atom:link href="http://127.0.0.1:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <link>http://127.0.0.1:4000/</link>
     <description>Blog on Flute , bentwood ring and instrument making</description>
-    <pubDate>Mon, 29 Jun 2015 09:32:48 +0100</pubDate>
+    <pubDate>Tue, 30 Jun 2015 08:13:12 +0100</pubDate>
+    
+      <item>
+        <title>Bamboo Flute Making - Part 2 - Nest</title>
+        <link>http://127.0.0.1:4000/2015/06/30/Flute-Making-Part-2--Nest.html</link>
+        <guid isPermaLink="true">http://127.0.0.1:4000/2015/06/30/Flute-Making-Part-2--Nest.html</guid>
+        <description>&lt;p&gt;In the North American flute the area where where air is directed over the splitting edge to set up the resonance to produce sound is called the birds nest.&lt;/p&gt;
+
+&lt;p&gt;This is the most important part of a flute and very subtle changes in its dimensions can produce wildly different results. The image below should give you an idea of the principle.&lt;/p&gt;
+
+&lt;p&gt;The dimensions used for the channel (width, hieght and profile), the sizes of the openings, the angle and position of the cutting edge in the air stream are all critical and vary according to flute being made and its desired characteristics.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/tsh.jpg&quot; alt=&quot;nest stage 1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I will give some rules of thumb as guidelines:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Parameter&lt;/th&gt;
+      &lt;th&gt;Ballpark value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Splitting edge angle&lt;/td&gt;
+      &lt;td&gt;30 - 45 deg&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Channel height&lt;/td&gt;
+      &lt;td&gt;1/2 mm - 1 mm&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Channel length&lt;/td&gt;
+      &lt;td&gt;20 - 30mm&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;TSH width&lt;/td&gt;
+      &lt;td&gt;Upto 1/2 bore diameter&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;TSH length&lt;/td&gt;
+      &lt;td&gt;6 * airstream channel height&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;These are purely suggestions and you are encouraged to experiment produce many fire sticks on your own. Bamboo is ideal for this as it is cheap to buy and already has a bore, greatly reducing the costs in time and money while you get a feel for how each parameter affects the instruments sound. Be sure to start small and slowly increase values as you voice an instrument, its easier to cut bits off than to stick them back on. There is also some fairly involved mathematics that that can be used to calculate the values if you are that way inclined.&lt;/p&gt;
+
+&lt;p&gt;For discussion, debate and further ideas I refer you to the &lt;a href=&quot;http://groups.yahoo.com/neo/groups/nativeflutewoodworking/info&quot;&gt;NAFlute forums&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/nest1.jpg&quot; alt=&quot;nest stage 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I begin by taking my bamboo and making two saw cuts either side of a node. These cuts are only a few millimeters deep, you don’t want to cut through the wall!&lt;/p&gt;
+
+&lt;p&gt;I then use a chisel to flatten the area between the two cuts. It is vital that this area is worked util completely flat and is wide enough for your desired channel and splitting edge.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/nest2.jpg&quot; alt=&quot;nest stage 3&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I like to make this area just long enough that I can use a small engineers square to check the flatness.&lt;/p&gt;
+
+&lt;p&gt;Next the geometry of the nest is marked first in pencil and then with a knife.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/nest3.jpg&quot; alt=&quot;nest stage 4&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I start by cutting out the channel now to a shallow depth using a chisel. Final shaping and finishing for this and other components should be left until you are voicing the instrument, but try to get a smooth and consistent depth for now.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/nest4.jpg&quot; alt=&quot;nest stage 5&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next drill some holes where the air will enter the channel and for the true sound hole (TSH). Use a small knife and files to enlarge the holes and make undercuts for the splitting edge and where the airstream enters the channel.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/nest5.jpg&quot; alt=&quot;nest stage 6&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally mark, score, and chisel the top half of the airstreams channel into the base of the bird.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/nest6.jpg&quot; alt=&quot;nest stage 7&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can see some of my bamboo flutes on &lt;a href=&quot;https://plus.google.com/u/0/108624488609783583375/posts&quot;&gt;Google+&lt;/a&gt; and for sale on &lt;a href=&quot;https://www.etsy.com/uk/shop/Soundcraft?ref=hdr_shop_menu&quot;&gt;etsy&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 30 Jun 2015 00:00:00 +0100</pubDate>
+      </item>
     
       <item>
         <title>Bamboo Flute Making - Part 1 - Binding</title>
-        <link>http://rabfulton.github.io/2015/06/27/Flute-Making-Part-1--Bindings.html</link>
-        <guid isPermaLink="true">http://rabfulton.github.io/2015/06/27/Flute-Making-Part-1--Bindings.html</guid>
+        <link>http://127.0.0.1:4000/2015/06/27/Flute-Making-Part-1--Bindings.html</link>
+        <guid isPermaLink="true">http://127.0.0.1:4000/2015/06/27/Flute-Making-Part-1--Bindings.html</guid>
         <description>&lt;p&gt;In this post I cover how to tie a binding knot commonly used by flute makers around the world to decorate, reinforce or repair an instrument.&lt;/p&gt;
 
 &lt;p&gt;I use fishing line for my bindings, you can use any type of string or material of choice, as long as it is strong. For a binding to be effective it must be as tight as possible. Begin by taking a few meters of your line and tying one end to something solid. At the other end create a loop and pin it in place on the instrument.&lt;/p&gt;
