@@ -5,7 +5,60 @@
     <atom:link href="http://127.0.0.1:4000/feed.xml" rel="self" type="application/rss+xml"/>
     <link>http://127.0.0.1:4000/</link>
     <description>Blog on Flute , bentwood ring and instrument making</description>
-    <pubDate>Tue, 21 Jul 2015 18:46:37 +0100</pubDate>
+    <pubDate>Sun, 02 Aug 2015 06:04:31 +0100</pubDate>
+    
+      <item>
+        <title>John Conways Game of Life</title>
+        <link>http://127.0.0.1:4000/2015/08/02/Game-of-Life.html</link>
+        <guid isPermaLink="true">http://127.0.0.1:4000/2015/08/02/Game-of-Life.html</guid>
+        <description>&lt;p&gt;The &lt;a href=&quot;https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life&quot;&gt;game of Life&lt;/a&gt; is a cellular automaton. It was developed or discovered by the mathematician John Conway in 1970. The premise is that you have a grid where each cell of the grid can be coloured (alive) on blank (dead). The decision of whether a cell is alive or dead is governed by four simple rules.&lt;/p&gt;
+
+&lt;p&gt;For each cell in a grid we consider it and its eight surrounding neighbors according to the following:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Current state&lt;/th&gt;
+      &lt;th&gt;Next State&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Alive with less than 2 neighbors alive&lt;/td&gt;
+      &lt;td&gt;Dead&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Alive with 2 or 3 neighbors alive&lt;/td&gt;
+      &lt;td&gt;Alive&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Alive with more than 3 neighbors alive&lt;/td&gt;
+      &lt;td&gt;Dead&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Dead with 3 neighbors alive&lt;/td&gt;
+      &lt;td&gt;Alive&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Applying these rules at fixed time steps with differing starting conditions can produce remarkably complex behavior and has been show to be &lt;a href=&quot;https://en.wikipedia.org/wiki/Turing_completeness&quot;&gt;Turing complete&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Interestingly when Mr Conway conceived this he did not run the simulation on a computer (in 1970 they could be hard to come by), but instead ran the simulation in his office using all manner of items to represent cells and marveled as patterns formed and expanded and even spread out into the hallway. Nowadays any computer or smartphone can be used to explore the Game of Life and any other rule sets you can imagine.&lt;/p&gt;
+
+&lt;p&gt;An other approach is a dedicated electronics device. Keen to 256 solder LED’s I made a nice life simulation that is equally at home on your desk or wall…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/life.jpg&quot; alt=&quot;Game of Life&quot; /&gt;&lt;/p&gt;
+
+&lt;iframe width=&quot;640&quot; height=&quot;480&quot; src=&quot;http://www.youtube.com/embed/nP6oNeEQ0yw&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;allowfullscreen&quot;&gt; 
+&lt;/iframe&gt;
+
+&lt;p&gt;This one off production will be available for purchase on &lt;a href=&quot;https://www.etsy.com/uk/shop/Soundcraft?ref=hdr_shop_menu&quot;&gt;Etsy&lt;/a&gt;.
+You can see some of my other creations on &lt;a href=&quot;https://plus.google.com/u/0/108624488609783583375/posts&quot;&gt;Google+&lt;/a&gt; and for sale on &lt;a href=&quot;https://www.etsy.com/uk/shop/Soundcraft?ref=hdr_shop_menu&quot;&gt;Etsy&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 02 Aug 2015 00:00:00 +0100</pubDate>
+      </item>
     
       <item>
         <title>Wooden Rings - Inlay</title>
@@ -22,7 +75,7 @@ A tool called a purfling cutter (easy to make or can be purchased from a Luthier
 
 &lt;p&gt;&lt;img src=&quot;/img/ring-inlay3.jpg&quot; alt=&quot;Inlay stage 3&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;The process of inlaying the stones requires a surgeons hands and a good measure of patience. Using tweezers I position half a dozen or so stones at a time in the channel. In this case I am using Turquoise and Jasper.&lt;/p&gt;
+&lt;p&gt;The process of inlaying the stones requires a surgeons hands and a good deal of patience. Using tweezers I position half a dozen or so stones at a time in the channel. In this case I am using Turquoise and Jasper.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/ring-inlay4.jpg&quot; alt=&quot;Inlay stage 4&quot; /&gt;&lt;/p&gt;
 

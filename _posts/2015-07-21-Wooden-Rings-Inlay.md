@@ -14,7 +14,7 @@ The area between the scored lines can then be chiseled out. Here I am using my t
 
 ![Inlay stage 3](/img/ring-inlay3.jpg)
 
-The process of inlaying the stones requires a surgeons hands and a good measure of patience. Using tweezers I position half a dozen or so stones at a time in the channel. In this case I am using Turquoise and Jasper.
+The process of inlaying the stones requires a surgeons hands and a good deal of patience. Using tweezers I position half a dozen or so stones at a time in the channel. In this case I am using Turquoise and Jasper.
 
 ![Inlay stage 4](/img/ring-inlay4.jpg)
 
