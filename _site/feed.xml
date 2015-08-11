@@ -5,7 +5,33 @@
     <atom:link href="http://127.0.0.1:4000/feed.xml" rel="self" type="application/rss+xml"/>
     <link>http://127.0.0.1:4000/</link>
     <description>Blog on Flute , bentwood ring and instrument making</description>
-    <pubDate>Sun, 02 Aug 2015 06:04:31 +0100</pubDate>
+    <pubDate>Tue, 11 Aug 2015 18:08:38 +0100</pubDate>
+    
+      <item>
+        <title>Trackball</title>
+        <link>http://127.0.0.1:4000/2015/08/11/Trackball.html</link>
+        <guid isPermaLink="true">http://127.0.0.1:4000/2015/08/11/Trackball.html</guid>
+        <description>&lt;p&gt;The trackball was invented in 1946 by Ralph Benjamin for use in a military radar system and has had a small but loyal following amongst computer users who shun the conventional mouse. However, acquiring a nice trackball can be a difficult proposition, it is a small and underserved market populated with cheap plastic offerings utilising undersized spheres.&lt;/p&gt;
+
+&lt;p&gt;Many years ago I came across a nice industrial grade trackball. As expected it used an old serial protocol to communicate and thus began a project to re-engineer it to function with modern hardware.&lt;/p&gt;
+
+&lt;p&gt;For tracking the ball I settled on using the guts from a laser mouse. Laser mice are a welcome step up from regular optical models and track accurately at high DPI on almost any surface type, this includes shiny oversized black spheres. For the scroll wheel I salvaged a flywheel from an old HiFi tuner, it is nice and weighty with excellent bearings. The buttons were carved from Ebony and linked to lever type microswitches using brass rod.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/trackball1.jpg&quot; alt=&quot;Trackball 1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I decided to put some luthiery into the the case using Western Red Cedar with Cocobolo bindings for the top. The finish is French Polished shellac. And yes, that is a detachable mahogany palm rest, bet your Logitech doesn’t come with one of those.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/trackball2.jpg&quot; alt=&quot;Trackball 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The result is quite striking, I really like the smooth action of the scroll wheel and you are far less likely to spill beer all over your keyboard than are when using a mouse.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/trackball3.jpg&quot; alt=&quot;Trackball 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can see some of my other things I have been working on at &lt;a href=&quot;https://plus.google.com/u/0/108624488609783583375/posts&quot;&gt;Google+&lt;/a&gt; and some things for sale for sale at &lt;a href=&quot;https://www.etsy.com/uk/shop/Soundcraft?ref=hdr_shop_menu&quot;&gt;Etsy&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 11 Aug 2015 00:00:00 +0100</pubDate>
+      </item>
     
       <item>
         <title>John Conways Game of Life</title>
