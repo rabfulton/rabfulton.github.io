@@ -9,7 +9,7 @@ One such instrument, almost forgotten, near extinction is the [Tromba Marine](ht
 
 ![Tromba Marine Bridge](/img/tromba_bridge.jpg)
 
-As shown in the absolutely fine drawing above the bridge has one leg ever so slightly shorter than the other. When the string vibrates the fixed leg transmits the sound to the instruments top while the shorter leg physically taps the instruments top. This produces a raspy sound reminiscent of the brass family. Beyond this there is little information for the aspiring Trumpet Marine builder to follow. The instrument is present in a few museum collections and is mentioned in the venerable [Journal of Experimental Musical Instruments](http://windworld.com/features/back-issues/).
+As shown in the absolutely fine drawing above, the bridge has one leg ever so slightly shorter than the other. When the string vibrates the fixed leg transmits the sound to the instruments top while the shorter leg physically taps the instruments top. This produces a raspy sound reminiscent of the brass family. Beyond this there is little information for the aspiring Trumpet Marine builder to follow. The instrument is present in a few museum collections and is mentioned in the venerable [Journal of Experimental Musical Instruments](http://windworld.com/features/back-issues/).
 
 Thus I decided to rely on my experience of building classical guitars, the restriction of what materials I had to hand, and could afford to potentially sacrifice, and little imagination (making it up as you go along). My design ultimately had two bowable strings (to make it Twice as good?) and 10 sympathetic internal strings (to make it 10x as fun).
 
