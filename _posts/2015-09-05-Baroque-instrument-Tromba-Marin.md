@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Baroque Instruments - Tromba Marin
+title: Baroque Instruments - Tromba Marine
 ---
 
 In a bygone age before the standardisation of the orchestra Luthiers seemed to be involved in the making of all kinds of weird and wonderful instruments. Many were evolutionary ancestors to instruments we recognise today or off-shoots the the greater luthierie tree of life. Others were quite bazaar and unusual when compared to the standard forms we are familiar with.
