@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+	<meta charset="utf-8">
+	<title>Hardware Bitcoin Price Ticker | Rab Fulton</title>
+	<meta name="description" content="So I happened upon the ESP8266 microcontroller recently, a tiny low powered WiFi capable microchip intended for the internet of things (IOT). I’ve always bee...">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="/css/main.css">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+	<!-- Canonical -->
+	<link rel="canonical" href="http://rabfulton.github.io/2016/06/26/Bitcoin-Ticker.html">
+
+	<!-- RSS -->
+	<link rel="alternate" type="application/atom+xml" title="Rab Fulton" href="http://rabfulton.github.io/feed.xml" />
+
+	<!-- Font Awesome -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Google Fonts -->
+	
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+	
+
+	<!-- KaTeX -->
+	
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.js"></script>
+	
+
+	<!-- Google Analytics -->
+	
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-57327814-2', 'auto');
+	ga('send', 'pageview');
+	</script>
+	
+</head>
+
+  <body>
+    <header class="site-header">
+	<div class="branding">
+		
+		<h1 class="site-title">
+			<a href="/">Rab Fulton</a>
+		</h1>
+	</div>
+	<nav class="site-nav">
+		<ul>
+			
+			
+			
+			
+			<li>
+				<a class="page-link" href="/about/">
+					About Me
+				</a>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			
+			<!-- Social icons from Font Awesome, if enabled -->
+			
+
+
+<li>
+	<a href="mailto:rabfulton@gmail.com" title="Email">
+		<i class="fa fa-fw fa-envelope"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://plus.google.com/u/0/108624488609783583375/posts/" title="Follow on Google+">
+		<i class="fa fa-fw fa-google-plus"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</ul>
+	</nav>
+</header>
+
+    <div class="content">
+      <article >
+  <header style="background-image: url('/')">
+    <h1 class="title">Hardware Bitcoin Price Ticker</h1>
+    <p class="meta">
+    June 26, 2016
+    
+    </p>
+  </header>
+  <section class="post-content"><p>So I happened upon the <a href="https://en.wikipedia.org/wiki/ESP8266">ESP8266</a> microcontroller recently, a tiny low powered WiFi capable microchip intended for the internet of things (IOT). I’ve always been rather scepticle of the IOT movement and would rather not receive emails signed “yours truly, the toaster”, but sometimes you have to just go with the flow.</p>
+
+<p>Thus begun a project with some electronics, woodwork and programming, hours of fun…</p>
+
+<p>The concept for the project was to produce an “clock” which rather than relaying the time would convey the current exchange rate of Bitcoin to USD. Following a little feature creep an android app to configure the price source and frequency of update along with upper and lower alarm bounds as well as additional currencies was added.</p>
+
+<h2 id="the-electronic-hardware">The Electronic Hardware</h2>
+
+<ul>
+  <li>ESP8266 microcontroller module with serial to USB</li>
+  <li>SSD1306 128*64 monochrome OLED display</li>
+  <li>Passive piezo buzzer module with transistor driver</li>
+</ul>
+
+<p>The microchip is supported by the <a href="https://www.arduino.cc/en/Main/Software">Arduino IDE</a> via an <a href="https://github.com/esp8266/Arduino">addon</a>. The module includes breakouts of all the pins and an interface to USB to program the chip. Life never used to be this easy, in the past you could spend days just figuring out how to power, program and erase microchips.</p>
+
+<p><img src="/img/esp8266.jpg" alt="esp8266" /></p>
+
+<h2 id="straight-to-coding">Straight to Coding</h2>
+
+<p>The coding went fast as libraries were available for the screen and the Arduino IDE abstracts much of what would once have had to be gleaned from datasheets. The basic elements of the code are as follows:</p>
+
+<ul>
+  <li>Setup serial connection for debug messages.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+<span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">"Bitcoin Price Ticker"</span><span class="p">));</span></code></pre></figure>
+
+<ul>
+  <li>Use the <a href="https://github.com/tzapu/WiFiManager">WifiManager</a> library to either connect to the internet or start an access point with captive portal to allow the user to configure SSID/password.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">  <span class="n">WiFiManager</span> <span class="n">wifiManager</span><span class="p">;</span>
+  <span class="n">wifiManager</span><span class="p">.</span><span class="n">autoConnect</span><span class="p">(</span><span class="s">"Bitcoin-Ticker"</span><span class="p">);</span>  
+
+  <span class="k">while</span> <span class="p">(</span><span class="n">WiFi</span><span class="p">.</span><span class="n">status</span><span class="p">()</span> <span class="o">!=</span> <span class="n">WL_CONNECTED</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"."</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">"IP address: "</span><span class="p">));</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">WiFi</span><span class="p">.</span><span class="n">localIP</span><span class="p">());</span> </code></pre></figure>
+
+<ul>
+  <li>Get the price from an online price feed by connecting to the remote server</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">client</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">"ERROR conn failed"</span><span class="p">));</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">"Requesting URL: "</span><span class="p">));</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="c1">// send request to server
+</span>  <span class="n">client</span><span class="o">-&gt;</span><span class="n">print</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="s">"GET "</span><span class="p">)</span> 
+  <span class="o">+</span> <span class="n">url</span> 
+  <span class="o">+</span> <span class="s">" HTTP/1.1</span><span class="se">\r\n</span><span class="s">"</span> 
+  <span class="o">+</span> <span class="s">"Host: "</span> 
+  <span class="o">+</span> <span class="n">host</span> 
+  <span class="o">+</span> <span class="s">"</span><span class="se">\r\n</span><span class="s">"</span> 
+  <span class="o">+</span> <span class="s">"Connection: close</span><span class="se">\r\n\r\n</span><span class="s">"</span><span class="p">);</span>
+ </code></pre></figure>
+
+<p>and storing the response for further processing.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"> <span class="kt">void</span> <span class="n">read_content</span><span class="p">(</span><span class="n">WiFiClient</span><span class="o">*</span> <span class="n">client</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">content</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">maxsize</span><span class="p">){</span>
+   <span class="kt">size_t</span> <span class="n">length</span> <span class="o">=</span> <span class="n">client</span><span class="o">-&gt;</span><span class="n">readBytes</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">maxsize</span><span class="p">);</span>
+   <span class="n">content</span><span class="p">[</span><span class="n">length</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'\0'</span><span class="p">;</span>
+   <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">content</span><span class="p">);</span> 
+ <span class="p">}</span></code></pre></figure>
+
+<ul>
+  <li>Discard everything returned by the server bar the JSON data that we need. As JSON data is delivered in curly braces “{}”, we only have to parse the servers response until the opening brace is found.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">  <span class="kt">char</span> <span class="n">brace</span> <span class="o">=</span> <span class="sc">'{'</span><span class="p">;</span>
+  <span class="n">bool</span> <span class="n">check</span> <span class="o">=</span> <span class="n">client</span><span class="o">-&gt;</span><span class="n">find</span><span class="p">(</span><span class="s">"{"</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">check</span><span class="p">;</span></code></pre></figure>
+
+<ul>
+  <li>Use the <a href="https://github.com/bblanchon/ArduinoJson">ArdiunoJSON Library</a> to parse the result and extract the price.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">  <span class="n">StaticJsonBuffer</span><span class="o">&lt;</span><span class="mi">512</span><span class="o">&gt;</span> <span class="n">jsonBuffer</span><span class="p">;</span>
+
+  <span class="n">JsonObject</span><span class="o">&amp;</span> <span class="n">root</span> <span class="o">=</span> <span class="n">jsonBuffer</span><span class="p">.</span><span class="n">parseObject</span><span class="p">(</span><span class="n">response</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">.</span><span class="n">success</span><span class="p">()){</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">"JSON failed!"</span><span class="p">));</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">"JSON = "</span><span class="p">));</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">jsonBuffer</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+  <span class="kt">char</span> <span class="n">result</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="n">currency</span><span class="p">){</span>
+    <span class="k">case</span> <span class="mi">0</span><span class="p">:</span><span class="c1">//cd usd
+</span>        <span class="n">strncpy</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">root</span><span class="p">[</span><span class="s">"bpi"</span><span class="p">][</span><span class="s">"USD"</span><span class="p">][</span><span class="s">"rate"</span><span class="p">],</span> <span class="mi">7</span><span class="p">);</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">1</span><span class="p">:</span><span class="c1">//cd eur
+</span>       <span class="n">strncpy</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">root</span><span class="p">[</span><span class="s">"bpi"</span><span class="p">][</span><span class="s">"EUR"</span><span class="p">][</span><span class="s">"rate"</span><span class="p">],</span> <span class="mi">7</span><span class="p">);</span>     
+       <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">2</span><span class="p">:</span><span class="c1">//cd gbp
+</span>       <span class="n">strncpy</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">root</span><span class="p">[</span><span class="s">"bpi"</span><span class="p">][</span><span class="s">"GBP"</span><span class="p">][</span><span class="s">"rate"</span><span class="p">],</span> <span class="mi">7</span><span class="p">);</span>
+       <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">3</span><span class="p">:</span><span class="c1">//houbi
+</span>       <span class="n">strncpy</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">root</span><span class="p">[</span><span class="s">"ticker"</span><span class="p">][</span><span class="s">"last"</span><span class="p">],</span> <span class="mi">7</span><span class="p">);</span>
+       <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">4</span><span class="p">:</span><span class="c1">//okcoin
+</span>       <span class="n">strncpy</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">root</span><span class="p">[</span><span class="s">"ticker"</span><span class="p">][</span><span class="s">"last"</span><span class="p">],</span> <span class="mi">7</span><span class="p">);</span>
+       <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">5</span><span class="p">:</span><span class="c1">//bitfinexBTCETHLTC
+</span>       <span class="n">strncpy</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">root</span><span class="p">[</span><span class="s">"mid"</span><span class="p">],</span> <span class="mi">7</span><span class="p">);</span>
+       <span class="k">break</span><span class="p">;</span>
+    <span class="k">default</span><span class="o">:</span>
+       <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">result</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'\0'</span><span class="p">;</span></code></pre></figure>
+
+<ul>
+  <li>Display the price!</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"> <span class="n">display</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="n">xoffset</span><span class="p">,</span> <span class="n">yoffset</span><span class="p">);</span>
+ <span class="n">display</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+ <span class="n">display</span><span class="p">.</span><span class="n">display</span><span class="p">();</span></code></pre></figure>
+
+<p>The full code is available on my <a href="https://github.com/rabfulton/HardwareBitcoinTicker">github repository</a>. Please feel free to point out momentously stupid errors at will.</p>
+
+<h2 id="making-an-enclosure">Making an Enclosure</h2>
+
+<p>Now to the hard part.</p>
+
+<p>I spent a good few days mulling over how to make a nice case for this project. Not everyone has a 3D printer and CNC lying around.</p>
+
+<p>To create a curved fascia for the screen I decided to try laminating some Mahogany veneer I had lying around. To do this one creates a mould and applies glue to multiple layers of veneer before clamping them in the form.</p>
+
+<p><img src="/img/btc1.jpg" alt="Bitcoin Ticker Case" /></p>
+
+<p>The veneers are only 0.6mm thick and bend easily without breaking with the grain orientated perpendicular to the curve. A good amount of dry soap can be rubbed on the form to prevent any excess glue sticking to it.</p>
+
+<p><img src="/img/btc2.jpg" alt="Bitcoin Ticker Case" /></p>
+
+<p>Once the glue is dried the veneers will retain the shape of the form. This is basically a home made plywood of the mahogany variety (not available at your local builders merchant).</p>
+
+<p><img src="/img/btc3.jpg" alt="Bitcoin Ticker Case" /></p>
+
+<p>The rosewood sides are backed by some ply and glued onto the the fascia.</p>
+
+<p><img src="/img/btc4.jpg" alt="Bitcoin Ticker Case" /></p>
+
+<p>A wooden block in the vice behind the fascia allows the opening for the screen to be chiselled out with just a few careful blows from a mallet.</p>
+
+<p><img src="/img/btc5.jpg" alt="Bitcoin Ticker Case" /></p>
+
+<p>The rosewood used here is a am old saw cut veneer about 1.5mm thick and is brittle. Accordingly it has been glued onto a maple backing veneer to make it easier to work with. In the picture is also a ply template used to mark and outline of the faceplate.</p>
+
+<p><img src="/img/btc6.jpg" alt="Bitcoin Ticker Case" /></p>
+
+<p>The face plate glued in position.</p>
+
+<p><img src="/img/btc7.jpg" alt="Bitcoin Ticker Case" /></p>
+
+<p>I chose to use brass rod to attach the screens mounting holes to the case. Getting the alignment correct is somewhat difficult. I start with one corner drilled and then run a short program to draw a rectangle and two diagonal lines from corner to corner. The screen can then be adjusted and the holes for drilling marked.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">  <span class="n">display</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="n">WHITE</span><span class="p">);</span>
+  <span class="n">display</span><span class="p">.</span><span class="n">drawLine</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">127</span><span class="p">,</span><span class="mi">63</span><span class="p">,</span><span class="n">WHITE</span><span class="p">);</span>
+  <span class="n">display</span><span class="p">.</span><span class="n">drawLine</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">63</span><span class="p">,</span><span class="mi">127</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">WHITE</span><span class="p">);</span>
+  <span class="n">display</span><span class="p">.</span><span class="n">display</span><span class="p">();</span></code></pre></figure>
+
+</section>
+</article>
+
+<!-- Post navigation -->
+
+
+<!-- Disqus -->
+
+
+    </div>
+    <script src="/js/main.js"></script>
+
+
+<footer class="site-footer">
+	<p class="text">Follow <a href="http://plus.google.com/u/0/108624488609783583375/posts/">Google + </a> 	 See what I have for sale on <a href="http://www.etsy.com/uk/shop/Soundcraft?ref=hdr_shop_menu">Etsy</a>
+</p>
+</footer>
+
+
+  </body>
+</html>

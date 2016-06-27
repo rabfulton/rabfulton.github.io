@@ -1,7 +1,7 @@
 # SITE CONFIGURATION
 baseurl: "" # the subpath of your site, e.g. /blog/
-#url: "http://127.0.0.1:4000" # the base hostname & protocol for your site
-url: "http://rabfulton.github.io"
+url: "http://127.0.0.1:4000" # the base hostname & protocol for your site
+#url: "http://rabfulton.github.io"
 # THEME-SPECIFIC CONFIGURATION
 theme:
   # Meta
@@ -61,12 +61,14 @@ theme:
   post_navigation: false
 
 # PAGINATION
+gems: [jekyll-paginate]
+
 paginate: 12
 paginate_path: "blog/page:num"
 
 # BUILD SETTINGS
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 sass:
   sass_dir: _sass
   style: :compressed

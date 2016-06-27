@@ -2,22 +2,204 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rab Fulton</title>
-    <atom:link href="http://127.0.0.1:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <link>http://127.0.0.1:4000/</link>
-    <description>Blog on Flute , bentwood ring and instrument making</description>
-    <pubDate>Mon, 05 Oct 2015 19:19:47 +0100</pubDate>
+    <atom:link href="http://rabfulton.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <link>http://rabfulton.github.io/</link>
+    <description>Blog on Flute, bentwood ring and instrument making, luthier</description>
+    <pubDate>Mon, 27 Jun 2016 17:14:20 +0100</pubDate>
     
       <item>
-        <title>Baroque Instruments - Tromba Marin</title>
-        <link>http://127.0.0.1:4000/2015/09/05/Baroque-instrument-Tromba-Marin.html</link>
-        <guid isPermaLink="true">http://127.0.0.1:4000/2015/09/05/Baroque-instrument-Tromba-Marin.html</guid>
+        <title>Hardware Bitcoin Price Ticker</title>
+        <link>http://rabfulton.github.io/2016/06/26/Bitcoin-Ticker.html</link>
+        <guid isPermaLink="true">http://rabfulton.github.io/2016/06/26/Bitcoin-Ticker.html</guid>
+        <description>&lt;p&gt;So I happened upon the &lt;a href=&quot;https://en.wikipedia.org/wiki/ESP8266&quot;&gt;ESP8266&lt;/a&gt; microcontroller recently, a tiny low powered WiFi capable microchip intended for the internet of things (IOT). I’ve always been rather scepticle of the IOT movement and would rather not receive emails signed “yours truly, the toaster”, but sometimes you have to just go with the flow.&lt;/p&gt;
+
+&lt;p&gt;Thus begun a project with some electronics, woodwork and programming, hours of fun…&lt;/p&gt;
+
+&lt;p&gt;The concept for the project was to produce an “clock” which rather than relaying the time would convey the current exchange rate of Bitcoin to USD. Following a little feature creep an android app to configure the price source and frequency of update along with upper and lower alarm bounds as well as additional currencies was added.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-electronic-hardware&quot;&gt;The Electronic Hardware&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ESP8266 microcontroller module with serial to USB&lt;/li&gt;
+  &lt;li&gt;SSD1306 128*64 monochrome OLED display&lt;/li&gt;
+  &lt;li&gt;Passive piezo buzzer module with transistor driver&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The microchip is supported by the &lt;a href=&quot;https://www.arduino.cc/en/Main/Software&quot;&gt;Arduino IDE&lt;/a&gt; via an &lt;a href=&quot;https://github.com/esp8266/Arduino&quot;&gt;addon&lt;/a&gt;. The module includes breakouts of all the pins and an interface to USB to program the chip. Life never used to be this easy, in the past you could spend days just figuring out how to power, program and erase microchips.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/esp8266.jpg&quot; alt=&quot;esp8266&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;straight-to-coding&quot;&gt;Straight to Coding&lt;/h2&gt;
+
+&lt;p&gt;The coding went fast as libraries were available for the screen and the Arduino IDE abstracts much of what would once have had to be gleaned from datasheets. The basic elements of the code are as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Setup serial connection for debug messages.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;115200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Bitcoin Price Ticker&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Use the &lt;a href=&quot;https://github.com/tzapu/WiFiManager&quot;&gt;WifiManager&lt;/a&gt; library to either connect to the internet or start an access point with captive portal to allow the user to configure SSID/password.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;  &lt;span class=&quot;n&quot;&gt;WiFiManager&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wifiManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;wifiManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;autoConnect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Bitcoin-Ticker&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+
+  &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WiFi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WL_CONNECTED&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;IP address: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WiFi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;localIP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Get the price from an online price feed by connecting to the remote server&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ERROR conn failed&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Requesting URL: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// send request to server
+&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;GET &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+  &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; 
+  &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; HTTP/1.1&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\r\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; 
+  &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Host: &quot;&lt;/span&gt; 
+  &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;host&lt;/span&gt; 
+  &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\r\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; 
+  &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Connection: close&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\r\n\r\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;and storing the response for further processing.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;read_content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WiFiClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;maxsize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+   &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;readBytes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;maxsize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;&#39;\0&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; 
+ &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Discard everything returned by the server bar the JSON data that we need. As JSON data is delivered in curly braces “{}”, we only have to parse the servers response until the opening brace is found.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;  &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;brace&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;&#39;{&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;check&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;check&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Use the &lt;a href=&quot;https://github.com/bblanchon/ArduinoJson&quot;&gt;ArdiunoJSON Library&lt;/a&gt; to parse the result and extract the price.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;  &lt;span class=&quot;n&quot;&gt;StaticJsonBuffer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;512&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jsonBuffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;JsonObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jsonBuffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parseObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;success&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()){&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;JSON failed!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;JSON = &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Serial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jsonBuffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;switch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;currency&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//cd usd
+&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;strncpy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bpi&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;USD&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;rate&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//cd eur
+&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;strncpy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bpi&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;EUR&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;rate&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;     
+       &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//cd gbp
+&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;strncpy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bpi&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;GBP&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;rate&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+       &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//houbi
+&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;strncpy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ticker&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;last&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+       &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//okcoin
+&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;strncpy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ticker&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;last&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+       &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//bitfinexBTCETHLTC
+&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;strncpy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+       &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+       &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;&#39;\0&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Display the price!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt; &lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setCursor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xoffset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;yoffset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The full code is available on my &lt;a href=&quot;https://github.com/rabfulton/HardwareBitcoinTicker&quot;&gt;github repository&lt;/a&gt;. Please feel free to point out momentously stupid errors at will.&lt;/p&gt;
+
+&lt;h2 id=&quot;making-an-enclosure&quot;&gt;Making an Enclosure&lt;/h2&gt;
+
+&lt;p&gt;Now to the hard part.&lt;/p&gt;
+
+&lt;p&gt;I spent a good few days mulling over how to make a nice case for this project. Not everyone has a 3D printer and CNC lying around.&lt;/p&gt;
+
+&lt;p&gt;To create a curved fascia for the screen I decided to try laminating some Mahogany veneer I had lying around. To do this one creates a mould and applies glue to multiple layers of veneer before clamping them in the form.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/btc1.jpg&quot; alt=&quot;Bitcoin Ticker Case&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The veneers are only 0.6mm thick and bend easily without breaking with the grain orientated perpendicular to the curve. A good amount of dry soap can be rubbed on the form to prevent any excess glue sticking to it.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/btc2.jpg&quot; alt=&quot;Bitcoin Ticker Case&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once the glue is dried the veneers will retain the shape of the form. This is basically a home made plywood of the mahogany variety (not available at your local builders merchant).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/btc3.jpg&quot; alt=&quot;Bitcoin Ticker Case&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The rosewood sides are backed by some ply and glued onto the the fascia.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/btc4.jpg&quot; alt=&quot;Bitcoin Ticker Case&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A wooden block in the vice behind the fascia allows the opening for the screen to be chiselled out with just a few careful blows from a mallet.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/btc5.jpg&quot; alt=&quot;Bitcoin Ticker Case&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The rosewood used here is a am old saw cut veneer about 1.5mm thick and is brittle. Accordingly it has been glued onto a maple backing veneer to make it easier to work with. In the picture is also a ply template used to mark and outline of the faceplate.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/btc6.jpg&quot; alt=&quot;Bitcoin Ticker Case&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The face plate glued in position.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/btc7.jpg&quot; alt=&quot;Bitcoin Ticker Case&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I chose to use brass rod to attach the screens mounting holes to the case. Getting the alignment correct is somewhat difficult. I start with one corner drilled and then run a short program to draw a rectangle and two diagonal lines from corner to corner. The screen can then be adjusted and the holes for drilling marked.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;  &lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;drawRect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;128&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;64&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WHITE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;drawLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;127&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;63&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WHITE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;drawLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;63&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;127&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WHITE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+</description>
+        <pubDate>Sun, 26 Jun 2016 00:00:00 +0100</pubDate>
+      </item>
+    
+      <item>
+        <title>Baroque Instruments - Tromba Marine</title>
+        <link>http://rabfulton.github.io/2015/09/05/Baroque-instrument-Tromba-Marin.html</link>
+        <guid isPermaLink="true">http://rabfulton.github.io/2015/09/05/Baroque-instrument-Tromba-Marin.html</guid>
         <description>&lt;p&gt;In a bygone age before the standardisation of the orchestra Luthiers seemed to be involved in the making of all kinds of weird and wonderful instruments. Many were evolutionary ancestors to instruments we recognise today or off-shoots the the greater luthierie tree of life. Others were quite bazaar and unusual when compared to the standard forms we are familiar with.&lt;/p&gt;
 
 &lt;p&gt;One such instrument, almost forgotten, near extinction is the &lt;a href=&quot;http://www.oriscus.com/mi/tm/index.htm&quot;&gt;Tromba Marine&lt;/a&gt;. With little resemblance to a trumpet and no connection to the sea this instrument is a curiosity to behold. Dating from sometime in the 1500’s its form is of a large bowed mono-chord with a unique bridge designed to vibrate against the instruments body producing a sound much like a trumpet!&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/tromba_bridge.jpg&quot; alt=&quot;Tromba Marine Bridge&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;As shown in the absolutely fine drawing above the bridge has one leg ever so slightly shorter than the other. When the string vibrates the fixed leg transmits the sound to the instruments top while the shorter leg physically taps the instruments top. This produces a raspy sound reminiscent of the brass family. Beyond this there is little information for the aspiring Trumpet Marine builder to follow. The instrument is present in a few museum collections and is mentioned in the venerable &lt;a href=&quot;http://windworld.com/features/back-issues/&quot;&gt;Journal of Experimental Musical Instruments&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;As shown in the absolutely fine drawing above, the bridge has one leg ever so slightly shorter than the other. When the string vibrates the fixed leg transmits the sound to the instruments top while the shorter leg physically taps the instruments top. This produces a raspy sound reminiscent of the brass family. Beyond this there is little information for the aspiring Trumpet Marine builder to follow. The instrument is present in a few museum collections and is mentioned in the venerable &lt;a href=&quot;http://windworld.com/features/back-issues/&quot;&gt;Journal of Experimental Musical Instruments&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Thus I decided to rely on my experience of building classical guitars, the restriction of what materials I had to hand, and could afford to potentially sacrifice, and little imagination (making it up as you go along). My design ultimately had two bowable strings (to make it Twice as good?) and 10 sympathetic internal strings (to make it 10x as fun).&lt;/p&gt;
 
@@ -63,8 +245,8 @@
     
       <item>
         <title>Trackball</title>
-        <link>http://127.0.0.1:4000/2015/08/11/Trackball.html</link>
-        <guid isPermaLink="true">http://127.0.0.1:4000/2015/08/11/Trackball.html</guid>
+        <link>http://rabfulton.github.io/2015/08/11/Trackball.html</link>
+        <guid isPermaLink="true">http://rabfulton.github.io/2015/08/11/Trackball.html</guid>
         <description>&lt;p&gt;The trackball was invented in 1946 by Ralph Benjamin for use in a military radar system and has had a small but loyal following amongst computer users who shun the conventional mouse. However, acquiring a nice trackball can be a difficult proposition, it is a small and underserved market populated with cheap plastic offerings utilising undersized spheres.&lt;/p&gt;
 
 &lt;p&gt;Many years ago I came across a nice industrial grade trackball. As expected it used an old serial protocol to communicate and thus began a project to re-engineer it to function with modern hardware.&lt;/p&gt;
@@ -89,8 +271,8 @@
     
       <item>
         <title>John Conways Game of Life</title>
-        <link>http://127.0.0.1:4000/2015/08/02/Game-of-Life.html</link>
-        <guid isPermaLink="true">http://127.0.0.1:4000/2015/08/02/Game-of-Life.html</guid>
+        <link>http://rabfulton.github.io/2015/08/02/Game-of-Life.html</link>
+        <guid isPermaLink="true">http://rabfulton.github.io/2015/08/02/Game-of-Life.html</guid>
         <description>&lt;p&gt;The &lt;a href=&quot;https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life&quot;&gt;game of Life&lt;/a&gt; is a cellular automaton. It was developed or discovered by the mathematician John Conway in 1970. The premise is that you have a grid where each cell of the grid can be coloured (alive) on blank (dead). The decision of whether a cell is alive or dead is governed by four simple rules.&lt;/p&gt;
 
 &lt;p&gt;For each cell in a grid we consider it and its eight surrounding neighbors according to the following:&lt;/p&gt;
@@ -142,8 +324,8 @@ You can see some of my other creations on &lt;a href=&quot;https://plus.google.c
     
       <item>
         <title>Wooden Rings - Inlay</title>
-        <link>http://127.0.0.1:4000/2015/07/21/Wooden-Rings-Inlay.html</link>
-        <guid isPermaLink="true">http://127.0.0.1:4000/2015/07/21/Wooden-Rings-Inlay.html</guid>
+        <link>http://rabfulton.github.io/2015/07/21/Wooden-Rings-Inlay.html</link>
+        <guid isPermaLink="true">http://rabfulton.github.io/2015/07/21/Wooden-Rings-Inlay.html</guid>
         <description>&lt;p&gt;Decided to share the process of adding a crushed stone inlay to a wooden ring. Starting with an Indian Rosewood blank I prepared earlier, a channel has to be cut to receive the inlay.
 A tool called a purfling cutter (easy to make or can be purchased from a Luthier supplier) is used to score two lines on the ring.&lt;/p&gt;
 
@@ -175,8 +357,8 @@ A tool called a purfling cutter (easy to make or can be purchased from a Luthier
     
       <item>
         <title>Bamboo Flute Making - Part 2 - Nest</title>
-        <link>http://127.0.0.1:4000/2015/06/30/Flute-Making-Part-2--Nest.html</link>
-        <guid isPermaLink="true">http://127.0.0.1:4000/2015/06/30/Flute-Making-Part-2--Nest.html</guid>
+        <link>http://rabfulton.github.io/2015/06/30/Flute-Making-Part-2-Nest.html</link>
+        <guid isPermaLink="true">http://rabfulton.github.io/2015/06/30/Flute-Making-Part-2-Nest.html</guid>
         <description>&lt;p&gt;In the North American flute the area where where air is directed over the splitting edge to set up the resonance to produce sound is called the birds nest.&lt;/p&gt;
 
 &lt;p&gt;This is the most important part of a flute and very subtle changes in its dimensions can produce wildly different results. The image below should give you an idea of the principle.&lt;/p&gt;
@@ -255,8 +437,8 @@ A tool called a purfling cutter (easy to make or can be purchased from a Luthier
     
       <item>
         <title>Bamboo Flute Making - Part 1 - Binding</title>
-        <link>http://127.0.0.1:4000/2015/06/27/Flute-Making-Part-1--Bindings.html</link>
-        <guid isPermaLink="true">http://127.0.0.1:4000/2015/06/27/Flute-Making-Part-1--Bindings.html</guid>
+        <link>http://rabfulton.github.io/2015/06/27/Flute-Making-Part-1-Bindings.html</link>
+        <guid isPermaLink="true">http://rabfulton.github.io/2015/06/27/Flute-Making-Part-1-Bindings.html</guid>
         <description>&lt;p&gt;In this post I cover how to tie a binding knot commonly used by flute makers around the world to decorate, reinforce or repair an instrument.&lt;/p&gt;
 
 &lt;p&gt;I use fishing line for my bindings, you can use any type of string or material of choice, as long as it is strong. For a binding to be effective it must be as tight as possible. Begin by taking a few meters of your line and tying one end to something solid. At the other end create a loop and pin it in place on the instrument.&lt;/p&gt;
