@@ -169,4 +169,6 @@ I chose to use brass rod to attach the screens mounting holes to the case. Getti
 
 ![Bitcoin Ticker Case](/img/btc8.jpg)
 
-Available on [OpenBazaar](https://openbazaar.org/) @ ob://@rabfulton/store
+Available on [OpenBazaar](http://openbazaar.org/) @ ob://@rabfulton/store
+
+Or see [here](http://duosear.ch/@rabfulton) to view in your web browser.

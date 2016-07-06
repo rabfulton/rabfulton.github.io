@@ -50,3 +50,6 @@ I was very pleased with the results of this project as I was unsure how/if it wo
 </iframe>
 
 You can see some of my creations on [Google+](https://plus.google.com/u/0/108624488609783583375/posts) and for sale on [etsy](https://www.etsy.com/uk/shop/Soundcraft?ref=hdr_shop_menu).
+
+Also check out my [OpenBazaar](http://duosear.ch/@rabfulton) listings.
+

@@ -52,3 +52,5 @@ Finally mark, score, and chisel the top half of the airstreams channel into the 
 ![nest stage 7](/img/nest6.jpg)
 
 You can see some of my bamboo flutes on [Google+](https://plus.google.com/u/0/108624488609783583375/posts) and for sale on [etsy](https://www.etsy.com/uk/shop/Soundcraft?ref=hdr_shop_menu).
+
+Also check out my [OpenBazaar](http://duosear.ch/@rabfulton) listings.
