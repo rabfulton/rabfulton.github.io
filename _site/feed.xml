@@ -2,15 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rab Fulton</title>
-    <atom:link href="http://127.0.0.1:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <link>http://127.0.0.1:4000/</link>
+    <atom:link href="http://rabfulton.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <link>http://rabfulton.github.io/</link>
     <description>Blog on Flute, bentwood ring and instrument making, luthier</description>
-    <pubDate>Tue, 20 Dec 2016 00:16:36 +0000</pubDate>
+    <pubDate>Tue, 20 Dec 2016 00:24:27 +0000</pubDate>
     
       <item>
         <title>Hardware Bitcoin Price Ticker</title>
-        <link>http://127.0.0.1:4000/2016/06/26/Bitcoin-Ticker.html</link>
-        <guid isPermaLink="true">http://127.0.0.1:4000/2016/06/26/Bitcoin-Ticker.html</guid>
+        <link>http://rabfulton.github.io/2016/06/26/Bitcoin-Ticker.html</link>
+        <guid isPermaLink="true">http://rabfulton.github.io/2016/06/26/Bitcoin-Ticker.html</guid>
         <description>&lt;p&gt;So I happened upon the &lt;a href=&quot;https://en.wikipedia.org/wiki/ESP8266&quot;&gt;ESP8266&lt;/a&gt; microcontroller recently, a tiny low powered WiFi capable microchip intended for the internet of things (IOT). I’ve always been rather scepticle of the IOT movement and would rather not receive emails signed “yours truly, the toaster”, but sometimes you have to just go with the flow.&lt;/p&gt;
 
 &lt;p&gt;Thus begun a project with some electronics, woodwork and programming, hours of fun…&lt;/p&gt;
@@ -190,14 +190,18 @@
 &lt;p&gt;Available on &lt;a href=&quot;http://openbazaar.org/&quot;&gt;OpenBazaar&lt;/a&gt; @ ob://@rabfulton/store&lt;/p&gt;
 
 &lt;p&gt;Or see &lt;a href=&quot;http://duosear.ch/@rabfulton&quot;&gt;here&lt;/a&gt; to view in your web browser.&lt;/p&gt;
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://www.etsy.com/assets/js/etsy_mini_shop.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;new Etsy.Mini(10967912,&#39;gallery&#39;,4,3,0,&#39;https://www.etsy.com&#39;);&lt;/script&gt;
+
 </description>
         <pubDate>Sun, 26 Jun 2016 00:00:00 +0100</pubDate>
       </item>
     
       <item>
         <title>Baroque Instruments - Tromba Marine</title>
-        <link>http://127.0.0.1:4000/2015/09/05/Baroque-instrument-Tromba-Marin.html</link>
-        <guid isPermaLink="true">http://127.0.0.1:4000/2015/09/05/Baroque-instrument-Tromba-Marin.html</guid>
+        <link>http://rabfulton.github.io/2015/09/05/Baroque-instrument-Tromba-Marin.html</link>
+        <guid isPermaLink="true">http://rabfulton.github.io/2015/09/05/Baroque-instrument-Tromba-Marin.html</guid>
         <description>&lt;p&gt;In a bygone age before the standardisation of the orchestra Luthiers seemed to be involved in the making of all kinds of weird and wonderful instruments. Many were evolutionary ancestors to instruments we recognise today or off-shoots the the greater luthierie tree of life. Others were quite bazaar and unusual when compared to the standard forms we are familiar with.&lt;/p&gt;
 
 &lt;p&gt;One such instrument, almost forgotten, near extinction is the &lt;a href=&quot;http://www.oriscus.com/mi/tm/index.htm&quot;&gt;Tromba Marine&lt;/a&gt;. With little resemblance to a trumpet and no connection to the sea this instrument is a curiosity to behold. Dating from sometime in the 1500’s its form is of a large bowed mono-chord with a unique bridge designed to vibrate against the instruments body producing a sound much like a trumpet!&lt;/p&gt;
@@ -247,14 +251,17 @@
 
 &lt;p&gt;Also check out my &lt;a href=&quot;http://duosear.ch/@rabfulton&quot;&gt;OpenBazaar&lt;/a&gt; listings.&lt;/p&gt;
 
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://www.etsy.com/assets/js/etsy_mini_shop.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;new Etsy.Mini(10967912,&#39;gallery&#39;,4,3,0,&#39;https://www.etsy.com&#39;);&lt;/script&gt;
+
 </description>
         <pubDate>Sat, 05 Sep 2015 00:00:00 +0100</pubDate>
       </item>
     
       <item>
         <title>Trackball</title>
-        <link>http://127.0.0.1:4000/2015/08/11/Trackball.html</link>
-        <guid isPermaLink="true">http://127.0.0.1:4000/2015/08/11/Trackball.html</guid>
+        <link>http://rabfulton.github.io/2015/08/11/Trackball.html</link>
+        <guid isPermaLink="true">http://rabfulton.github.io/2015/08/11/Trackball.html</guid>
         <description>&lt;p&gt;The trackball was invented in 1946 by Ralph Benjamin for use in a military radar system and has had a small but loyal following amongst computer users who shun the conventional mouse. However, acquiring a nice trackball can be a difficult proposition, it is a small and underserved market populated with cheap plastic offerings utilising undersized spheres.&lt;/p&gt;
 
 &lt;p&gt;Many years ago I came across a nice industrial grade trackball. As expected it used an old serial protocol to communicate and thus began a project to re-engineer it to function with modern hardware.&lt;/p&gt;
@@ -284,8 +291,8 @@
     
       <item>
         <title>John Conways Game of Life</title>
-        <link>http://127.0.0.1:4000/2015/08/02/Game-of-Life.html</link>
-        <guid isPermaLink="true">http://127.0.0.1:4000/2015/08/02/Game-of-Life.html</guid>
+        <link>http://rabfulton.github.io/2015/08/02/Game-of-Life.html</link>
+        <guid isPermaLink="true">http://rabfulton.github.io/2015/08/02/Game-of-Life.html</guid>
         <description>&lt;p&gt;The &lt;a href=&quot;https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life&quot;&gt;game of Life&lt;/a&gt; is a cellular automaton. It was developed or discovered by the mathematician John Conway in 1970. The premise is that you have a grid where each cell of the grid can be coloured (alive) on blank (dead). The decision of whether a cell is alive or dead is governed by four simple rules.&lt;/p&gt;
 
 &lt;p&gt;For each cell in a grid we consider it and its eight surrounding neighbors according to the following:&lt;/p&gt;
@@ -332,14 +339,18 @@
 You can see some of my other creations on &lt;a href=&quot;https://plus.google.com/u/0/108624488609783583375/posts&quot;&gt;Google+&lt;/a&gt; and for sale on &lt;a href=&quot;https://www.etsy.com/uk/shop/Soundcraft?ref=hdr_shop_menu&quot;&gt;Etsy&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Also check out my &lt;a href=&quot;http://duosear.ch/@rabfulton&quot;&gt;OpenBazaar&lt;/a&gt; listings.&lt;/p&gt;
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://www.etsy.com/assets/js/etsy_mini_shop.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;new Etsy.Mini(10967912,&#39;gallery&#39;,4,3,0,&#39;https://www.etsy.com&#39;);&lt;/script&gt;
+
 </description>
         <pubDate>Sun, 02 Aug 2015 00:00:00 +0100</pubDate>
       </item>
     
       <item>
         <title>Wooden Rings - Inlay</title>
-        <link>http://127.0.0.1:4000/2015/07/21/Wooden-Rings-Inlay.html</link>
-        <guid isPermaLink="true">http://127.0.0.1:4000/2015/07/21/Wooden-Rings-Inlay.html</guid>
+        <link>http://rabfulton.github.io/2015/07/21/Wooden-Rings-Inlay.html</link>
+        <guid isPermaLink="true">http://rabfulton.github.io/2015/07/21/Wooden-Rings-Inlay.html</guid>
         <description>&lt;p&gt;Decided to share the process of adding a crushed stone inlay to a wooden ring. Starting with an Indian Rosewood blank I prepared earlier, a channel has to be cut to receive the inlay.
 A tool called a purfling cutter (easy to make or can be purchased from a Luthier supplier) is used to score two lines on the ring.&lt;/p&gt;
 
@@ -374,8 +385,8 @@ A tool called a purfling cutter (easy to make or can be purchased from a Luthier
     
       <item>
         <title>Bamboo Flute Making - Part 2 - Nest</title>
-        <link>http://127.0.0.1:4000/2015/06/30/Flute-Making-Part-2-Nest.html</link>
-        <guid isPermaLink="true">http://127.0.0.1:4000/2015/06/30/Flute-Making-Part-2-Nest.html</guid>
+        <link>http://rabfulton.github.io/2015/06/30/Flute-Making-Part-2-Nest.html</link>
+        <guid isPermaLink="true">http://rabfulton.github.io/2015/06/30/Flute-Making-Part-2-Nest.html</guid>
         <description>&lt;p&gt;In the North American flute the area where where air is directed over the splitting edge to set up the resonance to produce sound is called the birds nest.&lt;/p&gt;
 
 &lt;p&gt;This is the most important part of a flute and very subtle changes in its dimensions can produce wildly different results. The image below should give you an idea of the principle.&lt;/p&gt;
@@ -450,14 +461,18 @@ A tool called a purfling cutter (easy to make or can be purchased from a Luthier
 &lt;p&gt;You can see some of my bamboo flutes on &lt;a href=&quot;https://plus.google.com/u/0/108624488609783583375/posts&quot;&gt;Google+&lt;/a&gt; and for sale on &lt;a href=&quot;https://www.etsy.com/uk/shop/Soundcraft?ref=hdr_shop_menu&quot;&gt;etsy&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Also check out my &lt;a href=&quot;http://duosear.ch/@rabfulton&quot;&gt;OpenBazaar&lt;/a&gt; listings.&lt;/p&gt;
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://www.etsy.com/assets/js/etsy_mini_shop.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;new Etsy.Mini(10967912,&#39;gallery&#39;,4,3,0,&#39;https://www.etsy.com&#39;);&lt;/script&gt;
+
 </description>
         <pubDate>Tue, 30 Jun 2015 00:00:00 +0100</pubDate>
       </item>
     
       <item>
         <title>Bamboo Flute Making - Part 1 - Binding</title>
-        <link>http://127.0.0.1:4000/2015/06/27/Flute-Making-Part-1-Bindings.html</link>
-        <guid isPermaLink="true">http://127.0.0.1:4000/2015/06/27/Flute-Making-Part-1-Bindings.html</guid>
+        <link>http://rabfulton.github.io/2015/06/27/Flute-Making-Part-1-Bindings.html</link>
+        <guid isPermaLink="true">http://rabfulton.github.io/2015/06/27/Flute-Making-Part-1-Bindings.html</guid>
         <description>&lt;p&gt;In this post I cover how to tie a binding knot commonly used by flute makers around the world to decorate, reinforce or repair an instrument.&lt;/p&gt;
 
 &lt;p&gt;I use fishing line for my bindings, you can use any type of string or material of choice, as long as it is strong. For a binding to be effective it must be as tight as possible. Begin by taking a few meters of your line and tying one end to something solid. At the other end create a loop and pin it in place on the instrument.&lt;/p&gt;
@@ -491,6 +506,10 @@ A tool called a purfling cutter (easy to make or can be purchased from a Luthier
 &lt;p&gt;You can see some of my bamboo flutes on &lt;a href=&quot;https://plus.google.com/u/0/108624488609783583375/posts&quot;&gt;Google+&lt;/a&gt; and for sale on &lt;a href=&quot;https://www.etsy.com/uk/shop/Soundcraft?ref=hdr_shop_menu&quot;&gt;etsy&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Also check out my &lt;a href=&quot;http://duosear.ch/@rabfulton&quot;&gt;OpenBazaar&lt;/a&gt; listings.&lt;/p&gt;
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://www.etsy.com/assets/js/etsy_mini_shop.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;new Etsy.Mini(10967912,&#39;gallery&#39;,4,3,0,&#39;https://www.etsy.com&#39;);&lt;/script&gt;
+
 </description>
         <pubDate>Sat, 27 Jun 2015 00:00:00 +0100</pubDate>
       </item>
