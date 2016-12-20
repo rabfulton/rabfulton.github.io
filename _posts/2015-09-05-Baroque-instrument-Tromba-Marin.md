@@ -53,3 +53,4 @@ You can see some of my creations on [Google+](https://plus.google.com/u/0/108624
 
 Also check out my [OpenBazaar](http://duosear.ch/@rabfulton) listings.
 
+<script type='text/javascript' src='https://www.etsy.com/assets/js/etsy_mini_shop.js'></script><script type='text/javascript'>new Etsy.Mini(10967912,'gallery',4,3,0,'https://www.etsy.com');</script>

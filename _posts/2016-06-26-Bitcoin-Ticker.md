@@ -172,3 +172,5 @@ I chose to use brass rod to attach the screens mounting holes to the case. Getti
 Available on [OpenBazaar](http://openbazaar.org/) @ ob://@rabfulton/store
 
 Or see [here](http://duosear.ch/@rabfulton) to view in your web browser.
+
+<script type='text/javascript' src='https://www.etsy.com/assets/js/etsy_mini_shop.js'></script><script type='text/javascript'>new Etsy.Mini(10967912,'gallery',4,3,0,'https://www.etsy.com');</script>

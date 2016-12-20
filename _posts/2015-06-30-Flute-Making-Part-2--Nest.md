@@ -54,3 +54,6 @@ Finally mark, score, and chisel the top half of the airstreams channel into the 
 You can see some of my bamboo flutes on [Google+](https://plus.google.com/u/0/108624488609783583375/posts) and for sale on [etsy](https://www.etsy.com/uk/shop/Soundcraft?ref=hdr_shop_menu).
 
 Also check out my [OpenBazaar](http://duosear.ch/@rabfulton) listings.
+
+<script type='text/javascript' src='https://www.etsy.com/assets/js/etsy_mini_shop.js'></script><script type='text/javascript'>new Etsy.Mini(10967912,'gallery',4,3,0,'https://www.etsy.com');</script>
+
