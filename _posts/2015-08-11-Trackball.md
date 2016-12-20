@@ -22,3 +22,5 @@ The result is quite striking, I really like the smooth action of the scroll whee
 You can see some of my other things I have been working on at [Google+](https://plus.google.com/u/0/108624488609783583375/posts) and some things for sale for sale at [Etsy](https://www.etsy.com/uk/shop/Soundcraft?ref=hdr_shop_menu).
 
 Also check out my [OpenBazaar](http://duosear.ch/@rabfulton) listings.
+
+<script type='text/javascript' src='https://www.etsy.com/assets/js/etsy_mini_shop.js'></script><script type='text/javascript'>new Etsy.Mini(10967912,'gallery',4,3,0,'https://www.etsy.com');</script>

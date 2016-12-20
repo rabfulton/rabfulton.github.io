@@ -24,9 +24,8 @@ A drop of thin cyanoacrylate glue is added to fix then in place. The glue has to
 
 Once all the stones are set add more glue to fill any gaps before tediously filing and sanding up to 12000 grit and burnishing to a high gloss finish.
 
-![Inlay stage 6](/img/ring-final.jpg)
-
 You can see some of my rings on [Google+](https://plus.google.com/u/0/108624488609783583375/posts) and for sale on [Etsy](https://www.etsy.com/uk/shop/Soundcraft?ref=hdr_shop_menu).
 
 Also check out my [OpenBazaar](http://duosear.ch/@rabfulton) listings.
 
+<script type='text/javascript' src='https://www.etsy.com/assets/js/etsy_mini_shop.js'></script><script type='text/javascript'>new Etsy.Mini(10967912,'gallery',4,3,0,'https://www.etsy.com');</script>
